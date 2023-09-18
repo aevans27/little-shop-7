@@ -187,11 +187,8 @@ RSpec.describe "Merchant Item Index page" do
   
         expect(page).to have_button("Enable #{item3.name}")
       end
-      
     end
-
   end
-  
 
   it "has a link new form to create item" do 
     visit "merchants/#{@merchant1.id}/items"
@@ -205,5 +202,29 @@ RSpec.describe "Merchant Item Index page" do
     expect(page).to have_content("Bar of chocolate")
     expect(page).to have_content(2)
     expect(page).to have_content("disabled")
+  end
+
+  describe "sorted by status" do 
+    it "has sections for items with status: disabled, and status: enabled, and items are sorted properly into those sections" do 
+      merchant1= Merchant.create!(name: "No Face", status: "disabled")
+      merchant2 = Merchant.create!(name: "Totoro", status: "enabled")
+  
+      item1 = Item.create!(name: "Chair", description: "you sit on it", unit_price: 2000, merchant: merchant1, status: "disabled")
+      item2 = Item.create!(name: "Table", description: "you eat off it", unit_price: 3000, merchant: merchant1, status: "enabled")
+      item3 = Item.create!(name: "Flower pot", description: "you plant in it", unit_price: 1000, merchant: merchant2, status: "disabled")
+      item4 = Item.create!(name: "Gate", description: "you go through it", unit_price: 6000, merchant: merchant2, status: "enabled")
+
+      visit "merchants/#{@merchant1.id}/items"
+
+      within "#enabled_items" do 
+        expect(page).to have_content("Table")
+        expect(page).to have_content("Gate")
+      end
+
+      within "#disabled_items" do 
+        expect(page).to have_content("Chair")
+        expect(page).to have_content("Flower Pot")
+      end
+    end
   end
 end
