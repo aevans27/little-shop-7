@@ -56,7 +56,6 @@ class Merchant <ApplicationRecord
 
 
   def most_popular_items
-    # require 'pry';binding.pry
     items.select("items.*, SUM(invoice_items.quantity * items.unit_price)")
     .joins(invoices: :invoice_items)
     .where("invoices.status = 0")

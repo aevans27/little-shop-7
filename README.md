@@ -39,3 +39,34 @@
 1. [User Stories](./doc/user_stories.md)
 1. [Extensions](./doc/extensions.md)
 1. [Evaluation](./doc/evaluation.md)
+
+
+## Contributors GitHub Links 
+
+[Noelle H.](https://github.com/lofi-nowhale),
+[Allan E.](https://github.com/aevans27),
+[Joop S.](https://github.com/JoopStark),
+[Blake S.](https://github.com/bserge13)
+
+## Project Description 
+
+This project focuses on developing a usable shop management application for both a merchant and and admin. Merchants will have a dashboard, an items index and show page, and an invoices index and show page. Admins will have their own dashboard, merchants index and show pages, as well as an invoices index and show page.    
+
+## Summary of Work 
+
+-To start the project we first had to implement a way to load the individual csv's of data (customers, invoice_items, invoices, items, merchants, & transactions). 
+
+-Next, the group was broken up into two teams to tackle the two sides of the project: the Admin (Joop & Blake) and the Merchant (Allan & Noelle)
+
+### User Story Breakdown 
+[*Admins*] An Admin needed to have the ability to: have links to all merchants (show pages), edit an merchant, and make a new merchant. Along with that, an admins show page shows merchant statistics, invoice information, and control the status of a merchant or invoice.  
+
+[*Merchants*] A Merchant needed to have the ability to: 
+
+### Methods
+[*Class methods*] top_customers, incomplete, top_mechants
+
+[*Instance methods*] formatted_date, total_revenue, top_customers, items_to_ship, best_day, best_day_data, most_popular_items   
+
+## Ideal Refactors
+
