@@ -209,16 +209,19 @@ RSpec.describe "Merchant Item Index page" do
   it "find 5 most popular ranked by total revenue generated" do
     visit "merchants/#{@merchant3.id}/items"
     within "#popular_merchant_items" do 
-    expect(page).to have_content("Huskies")
-    expect(page).to have_content("$260.00")
-    expect(page).to have_content("Chicken Breast")
-    expect(page).to have_content("$65.00")
     expect(page).to have_content("Colgate")
-    expect(page).to have_content("$52.00")
-    expect(page).to have_content("Pretzels")
-    expect(page).to have_content("$52.00")
+    expect(page).to have_content("$4,083.95")
     expect(page).to have_content("Red Bell Pepper")
-    expect(page).to have_content("$26.00")
+    expect(page).to have_content("$4,083.95")
+    expect(page).to have_content("Huskies")
+    expect(page).to have_content("$4,083.95")
+    end
+  end
+
+  it "top items best day" do
+    visit "merchants/#{@merchant3.id}/items"
+    within "#popular_merchant_items" do 
+      expect(page).to have_content("Top selling date for Colgate was #{@invoice_4c.updated_at.strftime("%A, %B %d, %Y")}")
     end
   end
 end

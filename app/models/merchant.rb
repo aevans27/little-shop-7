@@ -56,10 +56,10 @@ class Merchant <ApplicationRecord
 
 
   def most_popular_items
-    items.select("items.*, SUM(invoice_items.quantity * items.unit_price)")
-    .joins(invoices: :invoice_items)
-    .where("invoices.status = 0")
-    .group("items.id")
+    items.select("items.*, invoices.updated_at, SUM(invoice_items.quantity * invoice_items.unit_price)")
+    .joins(invoices: :transactions)
+    .where("transactions.result = 0")
+    .group("items.id, invoices.updated_at")
     .order("sum desc")
     .limit(5)
   end

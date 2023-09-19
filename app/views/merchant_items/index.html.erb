@@ -24,8 +24,8 @@
 <h2>Popular Items:</h2>
 <section id="popular_merchant_items">
 <% @merchant.most_popular_items.each do |item| %>
-    <li><%= link_to "#{item.name}", "/merchants/#{@merchant.id}/items/#{item.id}" %>
-    <li><%= number_to_currency(item.sum/100.0) %>
+    <li>Top selling date for <%= link_to "#{item.name}", "/merchants/#{@merchant.id}/items/#{item.id}" %> was <%= item.updated_at.strftime("%A, %B %d, %Y") %>
+    <li>Total revenue <%= number_to_currency(item.sum/100.0) %>
   <% end %>
 </section>
 
