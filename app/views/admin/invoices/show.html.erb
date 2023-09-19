@@ -1,3 +1,4 @@
+<%= render partial: "header" %>
 <h2><%= "Invoice: #{@invoice.id}" %></h2>
 Created at: <%= @invoice.formatted_date %></br>
 Customer: <%= @invoice.customer.first_name + " " + @invoice.customer.last_name %>
