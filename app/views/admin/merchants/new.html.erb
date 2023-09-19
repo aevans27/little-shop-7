@@ -1,3 +1,4 @@
+<%= render partial: "header" %>
 <h1> Create new merchant </h1>
 <%= form_with url: "/admin/merchants", method: :post, data:{turbo: false} do |f| %>
   <%= f.label :name %>
