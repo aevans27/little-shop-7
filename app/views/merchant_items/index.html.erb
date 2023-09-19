@@ -5,7 +5,7 @@
 
 <section id="enabled_items">
   <h3> All Enabled Items </h3>
-  <% @merchant_items.each do |item| %>
+  <% @merchant.items.each do |item| %>
     <% if item.status == "enabled" %>
       <p><strong><%= link_to "#{item.name}", "/merchants/#{@merchant.id}/items/#{item.id}" %></strong><p>
         <li><strong>Description: </strong><%= "#{item.description}" %></li>
@@ -21,7 +21,7 @@
 
 <section id="disabled_items">
   <h3>All Disabled Items </h3>
-    <% @merchant_items.each do |item| %>
+    <% @merchant.items.each do |item| %>
       <% if item.status == "disabled" %>
         <p><strong><%= link_to "#{item.name}", "/merchants/#{@merchant.id}/items/#{item.id}" %></strong></p>
           <li><strong>Description: </strong><%= "#{item.description}" %></li>
