@@ -111,8 +111,23 @@ RSpec.describe "Admin Merchants" do
     expect("Disabled Merchants").to appear_before("No Face")
   end
 
+  it "shows the top 5 merchants" do 
+    load_best_test_data
 
+    visit '/admin/merchants'
+    expect(find("#top_5")).to have_content(@merchant2.name)
+    expect(find("#top_5")).to have_content(@merchant3.name)
+    expect(find("#top_5")).to have_content(@merchant5.name)
+    expect(find("#top_5")).to have_content(@merchant7.name)
+    expect(find("#top_5")).to have_content(@merchant1.name)
+  end
 
+  it "has a header" do
+    load_test_data
 
+    visit "/admin/merchants"
+
+    expect(page).to have_content("Admin: Merchant Section")
+  end
 
 end

@@ -24,6 +24,7 @@ RSpec.describe Merchant, type: :model do
       load_best_test_data
     end
     it "can return the top five merchants" do
+      # binding.pry
       expect(Merchant.top_merchants[0].id).to eq(@merchant2.id)
       expect(Merchant.top_merchants[1].id).to eq(@merchant3.id)
       expect(Merchant.top_merchants[2].id).to eq(@merchant5.id) #5 being higher than 7 means query is also looking at date
@@ -36,5 +37,11 @@ RSpec.describe Merchant, type: :model do
     it "also finds their best day" do
       expect(@merchant2.best_day).to eq("Monday, March 27, 2023")
     end
+  end
+
+  it "can return the merchants top five items" do
+    load_test_data
+    expect(@merchant3.most_popular_items.first.name).to eq("Colgate")
+    expect(@merchant3.most_popular_items.first.sum).to eq(408395)
   end
 end

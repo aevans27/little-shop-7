@@ -60,4 +60,12 @@ RSpec.describe "the invoice show" do
     expect(page).to have_field('status', with: 'completed')
   end
 
+  it "has a header" do
+    load_test_data
+
+    visit "admin/invoices/#{@invoice_1a.id}"
+
+    expect(page).to have_content("Admin: Invoice Section")
+  end
+
 end

@@ -7,6 +7,16 @@ class MerchantItemsController < ApplicationController #named for MerchantsItems 
     @item = Item.find(params[:item_id])
   end
 
+  def create
+    # require 'pry';binding.pry
+    @merchant = Merchant.find(params[:merchant_id])
+    @merchant.items.create!(name:params[:name],
+     description:params[:description],
+      unit_price:params[:price])
+
+      redirect_to "/merchants/#{params[:merchant_id]}/items"
+  end
+
   def update 
     # require 'pry';binding.pry
     merchant = Merchant.find(params[:merchant_id])

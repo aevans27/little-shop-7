@@ -1,3 +1,4 @@
+<%= render partial: "header" %>
 <h1> Edit Merchant </h1>
 <%= form_with url: "/admin/merchants/#{@merchant.id}?change=name", method: :patch, data:{turbo: false} do |f| %>
   <%= f.label :name %>
