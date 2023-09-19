@@ -2,24 +2,35 @@
 
 <h2>Available Items:</h2>
 <section id="all_merchant_items">
-<% @merchant_items.each do |item| %>
-    <li><%= link_to "#{item.name}", "/merchants/#{@merchant.id}/items/#{item.id}" %>
+
+<section id="enabled_items">
+  <h3> All Enabled Items </h3>
+  <% @merchant_items.each do |item| %>
     <% if item.status == "enabled" %>
+      <%= link_to "#{item.name}", "/merchants/#{@merchant.id}/items/#{item.id}" %>
       <%= form_with url: "/merchants/#{@merchant.id}/items/#{item.id}", method: :patch, data: {turbo: false} do |f| %>
-        <%= f.hidden_field :status, :value=>"disabled" %>
+        <%= f.hidden_field :status, :value => "disabled" %>
         <%= f.submit "Disable #{item.name}" %>
       <% end %>
-    <% else %>
-      <%= form_with url: "/merchants/#{@merchant.id}/items/#{item.id}", method: :patch, data: {turbo: false} do |f| %>
-        <%= f.hidden_field :status, :value=>"enabled" %>
-        <%= f.submit "Enable #{item.name}" %>
-      <% end %>
-   <% end %> 
-    <li><%= "#{item.description}" %>
-    <li><%= "#{item.unit_price}" %>
-    <li><%= "#{item.status}" %>
+    <% end %>
   <% end %>
-</section><h2>Create Items:</h2>
+</section>
+
+<section id="disabled_items">
+  <h3>All Disabled Items </h3>
+    <% @merchant_items.each do |item| %>
+      <% if item.status == "disabled" %>
+        <%= link_to "#{item.name}", "/merchants/#{@merchant.id}/items/#{item.id}" %>
+        <%= form_with url: "/merchants/#{@merchant.id}/items/#{item.id}", method: :patch, data: {turbo: false} do |f| %>
+          <%= f.hidden_field :status, :value => "enabled" %>
+          <%= f.submit "Enable #{item.name}" %>
+        <% end %> 
+      <% end %>
+    <% end %>
+</section>
+</section>
+
+<h2>Create Items:</h2>
 <ul id="merchant_items_create">
-  <li><%= link_to "Add Item", "/merchants/#{@merchant.id}/items/new" %>
+  <li><%= link_to "Add Item", "/merchants/#{@merchant.id}/items/new" %></li>
 </ul>
