@@ -36,4 +36,13 @@ RSpec.describe "Admin Merchants" do
     expect(page).to have_content("Information has been successfully updated")
     expect(page).to_not have_content("Catbus")
   end
+
+  it "has a header" do
+    load_test_data
+
+    visit "/admin/merchants/#{@merchant7.id}/"
+
+    expect(page).to have_content("Admin: Merchant Section")
+  end
+
 end 

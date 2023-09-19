@@ -35,7 +35,8 @@ class Merchant <ApplicationRecord
 	    INNER JOIN items ON items.merchant_id = merchants.id 
 	    INNER JOIN invoice_items ON invoice_items.item_id = items.id 
 	    INNER JOIN invoices ON invoices.id = invoice_items.invoice_id
-	    WHERE invoices.status = 0
+	   	INNER JOIN transactions ON transactions.invoice_id = invoices.id
+	    WHERE transactions.result = 0
 	    GROUP BY merchants.id
 	    ORDER BY total_cost DESC, most_recent DESC
 	    LIMIT (5)"

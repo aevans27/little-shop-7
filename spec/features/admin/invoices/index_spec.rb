@@ -22,6 +22,16 @@ RSpec.describe "the invoice index" do
     # expect(current_path).to eq("admin/invoices/#{@invoice_1k.id}")
   end
 
+  it "has a header" do
+    load_test_data
+
+    visit "/admin/invoices"
+
+    expect(page).to have_content("Admin: Invoice Section")
+  end
+
+  
+
 
 
 
