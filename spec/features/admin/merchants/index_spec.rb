@@ -122,4 +122,12 @@ RSpec.describe "Admin Merchants" do
     expect(find("#top_5")).to have_content(@merchant1.name)
   end
 
+  it "has a header" do
+    load_test_data
+
+    visit "/admin/merchants"
+
+    expect(page).to have_content("Admin: Merchant Section")
+  end
+
 end
