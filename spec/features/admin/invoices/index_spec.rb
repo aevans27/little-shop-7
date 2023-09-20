@@ -13,19 +13,15 @@ RSpec.describe "the invoice index" do
     @invoice_3a = Invoice.create!(status: "cancelled", customer: @customer_3)
     @invoice_3b = Invoice.create!(status: "cancelled", customer: @customer_3)
 
-    visit "/admin/invoices"
+    visit admin_invoices_path
 
     expect(page).to have_link("Invoice: #{@invoice_1k.id}")
-
-    # click_link "Invoice: #{@invoice_1k.id}"
-
-    # expect(current_path).to eq("admin/invoices/#{@invoice_1k.id}")
   end
 
   it "has a header" do
     load_test_data
 
-    visit "/admin/invoices"
+    visit admin_invoices_path
 
     expect(page).to have_content("Admin: Invoice Section")
   end
