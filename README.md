@@ -70,4 +70,4 @@ This project focuses on developing a usable shop management application for both
 
 ## Ideal Refactors
 
-SQL statements to active record: while nothing's added to the sql it would be good practice to  
+SQL statements to active record: While the SQL queries are contained and not susceptible to attacks, rewriting them in ActiveRecord would be good practice for preventing SQL injection attacks for Rails features that take an argument.
