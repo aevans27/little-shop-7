@@ -6,7 +6,6 @@ RSpec.describe "Merchant's Item's Show Page" do
   end
   it "shows a list of all of the item's attributes" do 
     visit "/merchants/#{@merchant1.id}/items/#{@item5.id}"
-    
 
     within "#product_header" do 
       expect(page).to have_content(@item5.name)
