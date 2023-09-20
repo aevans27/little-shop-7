@@ -3,7 +3,8 @@ require "rails_helper"
 RSpec.describe "Admin Merchan new page" do
   it "has a header" do
     load_test_data
-    visit "/admin/merchants"
+
+    visit new_admin_merchant_path
 
     expect(page).to have_content("Admin: Merchant Section")
   end
@@ -19,7 +20,7 @@ RSpec.describe "Admin Merchan new page" do
     
     fill_in "Name", with: "Karl"
     click_button "Submit"
-
+    
     expect(page).to have_current_path("/admin/merchants")
     expect(page).to have_content("Information has been successfully updated")
     expect(page).to have_content("Karl")

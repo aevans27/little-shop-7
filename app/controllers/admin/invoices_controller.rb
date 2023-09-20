@@ -11,6 +11,6 @@ class Admin::InvoicesController < ApplicationController
     aninvoice = Invoice.find(params[:id])
     aninvoice.update(status: params[:status])
 
-    redirect_to "/admin/invoices/#{aninvoice.id}"
+    redirect_to admin_invoice_path(aninvoice)
   end
 end
