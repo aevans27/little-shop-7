@@ -17,7 +17,7 @@ class Merchant <ApplicationRecord
 	  #   LIMIT 5")
     
       self.customers.select("customers.*, COUNT(transactions.id)")
-      .joins(:transactions) #invoices: optional
+      .joins(:transactions)
       .where("transactions.result = 0")
       .group("customers.id")
       .order("count desc")
@@ -26,7 +26,7 @@ class Merchant <ApplicationRecord
 
   def items_to_ship
       self.items.select("items.*, invoice_items.invoice_id, invoices.created_at")
-      .joins(invoices: :invoice_items) #invoices: optional
+      .joins(invoices: :invoice_items)
       .where("invoice_items.status != 2")
       .order(:invoice_id)
       .distinct
