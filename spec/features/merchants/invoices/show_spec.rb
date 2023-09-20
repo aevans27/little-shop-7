@@ -52,6 +52,5 @@ RSpec.describe "Merchant Invoice Show page" do
 
     expect(page).to_not have_field('status', with: 'pending')
     expect(page).to have_field('status', with: 'shipped')
-    # save_and_open_page
   end
 end
