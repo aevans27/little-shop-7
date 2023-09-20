@@ -9,7 +9,7 @@
     <% if item.status == "enabled" %>
       <p><strong><%= link_to "#{item.name}", "/merchants/#{@merchant.id}/items/#{item.id}" %></strong><p>
         <li><strong>Description: </strong><%= "#{item.description}" %></li>
-        <li><strong>Current Price: </strong><%= "#{item.unit_price}" %></li>
+        <li><strong>Current Price: </strong><%= "#{number_to_currency(item.unit_price/100.0)}" %></li>
         <li><strong>Item Status: </strong><%= "#{item.status}" %></li>
       <%= form_with url: "/merchants/#{@merchant.id}/items/#{item.id}", method: :patch, data: {turbo: false} do |f| %>
         <%= f.hidden_field :status, :value => "disabled" %>
@@ -25,7 +25,7 @@
       <% if item.status == "disabled" %>
         <p><strong><%= link_to "#{item.name}", "/merchants/#{@merchant.id}/items/#{item.id}" %></strong></p>
           <li><strong>Description: </strong><%= "#{item.description}" %></li>
-          <li><strong>Current Price: </strong><%= "#{item.unit_price}" %></li>
+          <li><strong>Current Price: </strong><%= "#{number_to_currency(item.unit_price/100.0)}" %></li>
           <li><strong>Item Status: </strong><%= "#{item.status}" %></li>
         <%= form_with url: "/merchants/#{@merchant.id}/items/#{item.id}", method: :patch, data: {turbo: false} do |f| %>
           <%= f.hidden_field :status, :value => "enabled" %>

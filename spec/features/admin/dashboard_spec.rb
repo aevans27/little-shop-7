@@ -2,13 +2,13 @@ require "rails_helper"
 
 RSpec.feature "Admin Dashboard" do 
   it "has a header" do 
-    visit '/admin'
+    visit admin_path
 
     expect(find(".header")).to have_content("Admin Dashboard")
   end
 
   it "has link to the admin merchants index" do 
-    visit '/admin'
+    visit admin_path
 
     expect(page).to have_link("Admin: All Merchants")
     expect(page).to have_link("Admin: All Invoices")
@@ -20,7 +20,7 @@ RSpec.feature "Admin Dashboard" do
     end
 
     it "has the top five customers" do
-      visit '/admin'
+      visit admin_path
 
       expect(page).to have_content("The Top 5 Customers:") 
       expect(page).to have_content(@customer_1.first_name)
@@ -43,7 +43,7 @@ RSpec.feature "Admin Dashboard" do
     end
 
     it "lists invoice id's with items not shipped and link to that invoice admin show" do 
-      visit '/admin'
+      visit admin_path
 
       expect(page).to have_content("Incomplete Invoices:")
       expect(page).to have_content(@invoice_1.id) 

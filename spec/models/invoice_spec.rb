@@ -6,6 +6,8 @@ RSpec.describe Invoice, type: :model do
     it { should have_many :transactions }
     it { should have_many :invoice_items }
     it { should have_many(:items).through(:invoice_items) }
+    it { should validate_presence_of :customer_id }
+    it { should validate_presence_of :status }
   end
 
   describe "can do caculations" do
@@ -36,6 +38,12 @@ RSpec.describe Invoice, type: :model do
       load_test_data
 
       expect(@invoice_1a.total_revenue).to eq(23400)
+    end
+
+    it "can find total_revenue if revenue is zero" do
+      load_best_test_data
+
+      expect(@invoice_14.total_revenue).to eq(0)
     end
   end
 end

@@ -5,7 +5,7 @@ RSpec.describe "Admin Merchants" do
   it "shows the names of each merchant in the system" do 
     load_test_data
 
-    visit '/admin/merchants'
+    visit admin_merchants_path
 
     expect(page).to have_content(@merchant1.name)
     expect(page).to have_content(@merchant2.name)
@@ -24,7 +24,7 @@ RSpec.describe "Admin Merchants" do
     merchant2 = Merchant.create!(name: "Totoro", status: "enabled")
     merchant3 = Merchant.create!(name: "Kiki", status: "enabled")
 
-    visit '/admin/merchants'
+    visit admin_merchants_path
     
     expect(find("#merchant-#{merchant1.id}")).to have_button("Enable #{merchant1.name}")
   end
@@ -34,7 +34,7 @@ RSpec.describe "Admin Merchants" do
     merchant2 = Merchant.create!(name: "Totoro", status: "enabled")
     merchant3 = Merchant.create!(name: "Kiki", status: "enabled")
 
-    visit '/admin/merchants'
+    visit admin_merchants_path
     
     expect(find("#merchant-#{merchant3.id}")).to have_button("Disable #{merchant3.name}")
   end
@@ -44,7 +44,7 @@ RSpec.describe "Admin Merchants" do
     merchant2 = Merchant.create!(name: "Totoro", status: "enabled")
     merchant3 = Merchant.create!(name: "Kiki", status: "enabled")
 
-    visit '/admin/merchants'
+    visit admin_merchants_path
     
     expect(find("#merchant-#{merchant3.id}")).to have_button("Disable #{merchant3.name}")
     
@@ -58,7 +58,7 @@ RSpec.describe "Admin Merchants" do
     merchant2 = Merchant.create!(name: "Totoro", status: "enabled")
     merchant3 = Merchant.create!(name: "Kiki", status: "enabled")
 
-    visit '/admin/merchants'
+    visit admin_merchants_path
     
     expect(find("#merchant-#{merchant1.id}")).to have_button("Enable #{merchant1.name}")
     
@@ -69,7 +69,8 @@ RSpec.describe "Admin Merchants" do
 
   it "creates new merchants with valid data" do
     load_test_data
-    visit "/admin/merchants"
+
+    visit admin_merchants_path
     
     expect(page).to have_link("Create a new merchant")
     click_link("Create a new merchant")
@@ -96,7 +97,7 @@ RSpec.describe "Admin Merchants" do
     merchant2 = Merchant.create!(name: "Totoro", status: "enabled")
     merchant3 = Merchant.create!(name: "Kiki", status: "enabled")
 
-    visit '/admin/merchants'
+    visit admin_merchants_path
     
     expect("Enabled Merchants").to appear_before("Totoro")
     expect("Totoro").to appear_before("Disabled Merchants")
@@ -106,7 +107,8 @@ RSpec.describe "Admin Merchants" do
   it "shows the top 5 merchants" do 
     load_best_test_data
 
-    visit '/admin/merchants'
+    visit admin_merchants_path
+
     expect(find("#top_5")).to have_content(@merchant2.name)
     expect(find("#top_5")).to have_content(@merchant3.name)
     expect(find("#top_5")).to have_content(@merchant5.name)
@@ -119,7 +121,7 @@ RSpec.describe "Admin Merchants" do
   it "shows the best day for the top merchants" do
     load_best_test_data
 
-    visit '/admin/merchants'
+    visit admin_merchants_path
 
     expect(page).to have_content("Top selling date for #{@merchant2.name} was #{@merchant2.best_day}")
     expect(page).to have_content("Top selling date for #{@merchant3.name} was #{@merchant3.best_day}")
@@ -131,7 +133,7 @@ RSpec.describe "Admin Merchants" do
   it "has a header" do
     load_test_data
 
-    visit "/admin/merchants"
+    visit admin_merchants_path
 
     expect(page).to have_content("Admin: Merchant Section")
   end

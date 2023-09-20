@@ -10,7 +10,6 @@ RSpec.describe "Merchant Invoice Show page" do
     within "#single_invoice" do 
        expect(page).to have_content(@invoice_1.id)
        expect(page).to have_content(@invoice_1.status.capitalize)
-      #  expect(page).to have_content("Friday, September 15, 2023")
        expect(page).to have_content(@invoice_1.customer.first_name)
        expect(page).to have_content(@invoice_1.customer.last_name)
     end
@@ -46,7 +45,7 @@ RSpec.describe "Merchant Invoice Show page" do
 
     expect(page).to have_field('status', with: 'packaged')
     expect(page).to_not have_field('status', with: 'shipped')
-
+    
     select('shipped', from: 'status')
     click_button "Update Item Status"
 
