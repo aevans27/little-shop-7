@@ -13,7 +13,7 @@ class MerchantItemsController < ApplicationController
      description:params[:description],
       unit_price:params[:price])
 
-      redirect_to "/merchants/#{params[:merchant_id]}/items"
+      redirect_to merchant_items_path(@merchant)
   end
 
   def update 
@@ -21,7 +21,8 @@ class MerchantItemsController < ApplicationController
     item = merchant.items.find(params[:id])
 
     item.update(status: params[:status])
-    redirect_to "/merchants/#{params[:merchant_id]}/items"
+
+    redirect_to merchant_items_path(merchant)
   end
   
   def new
