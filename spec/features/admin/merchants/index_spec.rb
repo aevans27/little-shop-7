@@ -120,6 +120,20 @@ RSpec.describe "Admin Merchants" do
     expect(find("#top_5")).to have_content(@merchant5.name)
     expect(find("#top_5")).to have_content(@merchant7.name)
     expect(find("#top_5")).to have_content(@merchant1.name)
+    expect(find("#top_5")).to_not have_content(@merchant4.name)
+    expect(find("#top_5")).to_not have_content(@merchant6.name)
+  end
+
+  it "shows the best day for the top merchants" do
+    load_best_test_data
+
+    visit '/admin/merchants'
+
+    expect(page).to have_content("Top selling date for #{@merchant2.name} was #{@merchant2.best_day}")
+    expect(page).to have_content("Top selling date for #{@merchant3.name} was #{@merchant3.best_day}")
+    expect(page).to have_content("Top selling date for #{@merchant5.name} was #{@merchant5.best_day}")
+    expect(page).to have_content("Top selling date for #{@merchant7.name} was #{@merchant6.best_day}")
+    expect(page).to have_content("Top selling date for #{@merchant1.name} was #{@merchant1.best_day}")
   end
 
   it "has a header" do
