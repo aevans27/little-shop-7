@@ -5,13 +5,12 @@ RSpec.describe Item, type: :model do
     it { should belong_to(:merchant) }
     it { should have_many :invoice_items }
     it { should have_many(:invoices).through(:invoice_items) }
+    it { should have_many(:transactions).through(:invoices) }
   end
 
   it "can format a date" do
-    @customer_1 = Customer.create!(first_name: "Frodo", last_name: "Baggins")
-
-    @invoice_1k = Invoice.create!(status: "completed", customer: @customer_1, created_at: "2012-03-25 09:54:09 UTC")
-
-    expect(@invoice_1k.formatted_date).to eq("Sunday, March 25, 2012")
+    merchant = Merchant.create!(name:"Bob")
+    merchant.items.create!(name:"Bobs burger", description:"Burger", unit_price: 10, created_at: "2012-03-25 09:54:09 UTC")
+    expect(merchant.items.first.formatted_date).to eq("Sunday, March 25, 2012")
   end
 end
