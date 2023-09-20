@@ -9,11 +9,16 @@ class MerchantItemsController < ApplicationController
 
   def create
     @merchant = Merchant.find(params[:merchant_id])
-    @merchant.items.create!(name:params[:name],
+   if params[:name].present? && params[:description].present? && params[:price].present?
+    @merchant.items.create(name:params[:name],
      description:params[:description],
       unit_price:params[:price])
-
       redirect_to "/merchants/#{params[:merchant_id]}/items"
+      flash[:alert] = "Item has been added to merchant"
+   else
+      redirect_to "/merchants/#{@merchant.id}/items/new"
+      flash[:error] = "Error: All fields must be filled in to submit"
+   end
   end
 
   def update 
