@@ -20,7 +20,7 @@ RSpec.describe "Admin Merchan new page" do
     
     fill_in "Name", with: "Karl"
     click_button "Submit"
-
+    
     expect(page).to have_current_path("/admin/merchants")
     expect(page).to have_content("Information has been successfully updated")
     expect(page).to have_content("Karl")
