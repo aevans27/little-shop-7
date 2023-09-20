@@ -7,7 +7,7 @@ RSpec.describe "Admin Merchants" do
 
   # US 25- Merchant Show
   it "takes you to the merchants show page" do 
-    visit '/admin/merchants'
+    visit admin_merchants_path
     
     click_link("Catbus")
     expect(page).to have_current_path("/admin/merchants/#{@merchant7.id}")
@@ -17,7 +17,7 @@ RSpec.describe "Admin Merchants" do
 
   # US 26- Update Merchant 
   it "can update a merchants information" do 
-    visit "/admin/merchants/#{@merchant7.id}"
+    visit admin_merchant_path(@merchant7)
 
     expect(page).to have_link("Update Merchant")
     click_link("Update Merchant")
@@ -40,7 +40,7 @@ RSpec.describe "Admin Merchants" do
   it "has a header" do
     load_test_data
 
-    visit "/admin/merchants/#{@merchant7.id}/"
+    visit admin_merchant_path(@merchant7)
 
     expect(page).to have_content("Admin: Merchant Section")
   end
