@@ -159,9 +159,13 @@ RSpec.describe "Merchant Item Index page" do
     end
   end
 
-  it "has a link new form to create item" do 
+  it "has a link new form to create item with empty values then normal ones" do 
     visit "merchants/#{@merchant1.id}/items"
     click_link "Add Item"
+
+    click_button "Submit"
+    expect(page).to have_content("Error: All fields must be filled in to submit")
+
     fill_in "Name", with: "Chocolate Bar"
     fill_in "Description", with: "Bar of chocolate"
     fill_in "Price", with: 2
@@ -171,6 +175,7 @@ RSpec.describe "Merchant Item Index page" do
     expect(page).to have_content("Bar of chocolate")
     expect(page).to have_content(2)
     expect(page).to have_content("disabled")
+    expect(page).to have_content("Item has been added to merchant")
   end
 
   describe "sorted by status" do 
