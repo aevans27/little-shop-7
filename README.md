@@ -70,3 +70,4 @@ This project focuses on developing a usable shop management application for both
 
 ## Ideal Refactors
 
+SQL statements to active record: while nothing's added to the sql it would be good practice to  
