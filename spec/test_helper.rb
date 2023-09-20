@@ -198,6 +198,7 @@ def load_best_test_data
   @invoice_11 = Invoice.create!(status: "completed", customer: @customer_1, updated_at: "2023-03-27 14:54:09 UTC")
   @invoice_12 = Invoice.create!(status: "completed", customer: @customer_1, updated_at: "2023-03-27 14:54:09 UTC")
   @invoice_13 = Invoice.create!(status: "completed", customer: @customer_1, updated_at: "2023-03-27 14:54:09 UTC")
+  @invoice_14 = Invoice.create!(status: "completed", customer: @customer_1, updated_at: "2023-03-27 14:54:09 UTC")
 
   @item1 = Item.create!(name: "Colgate", description: "toothpaste", unit_price: 400, merchant: @merchant1) 
   @item2 = Item.create!(name: "Red Bell Pepper", description: "Vegetable", unit_price: 200, merchant: @merchant2) 

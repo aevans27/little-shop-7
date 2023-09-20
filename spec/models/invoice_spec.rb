@@ -39,5 +39,11 @@ RSpec.describe Invoice, type: :model do
 
       expect(@invoice_1a.total_revenue).to eq(23400)
     end
+
+    it "can find total_revenue if revenue is zero" do
+      load_best_test_data
+
+      expect(@invoice_14.total_revenue).to eq(0)
+    end
   end
 end
