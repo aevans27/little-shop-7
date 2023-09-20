@@ -54,19 +54,19 @@ This project focuses on developing a usable shop management application for both
 
 ## Summary of Work 
 
--To start the project we first had to implement a way to load the individual csv's of data (customers, invoice_items, invoices, items, merchants, & transactions). 
+* To start the project we first had to implement a way to load the individual csv's of data (customers, invoice_items, invoices, items, merchants, & transactions). 
 
--Next, the group was broken up into two teams to tackle the two sides of the project: the Admin (Joop & Blake) and the Merchant (Allan & Noelle)
+* Next, the group was broken up into two teams to tackle the two sides of the project: the Admin (Joop & Blake) and the Merchant (Allan & Noelle)
 
-### User Story Breakdown 
-[*Admins*] An Admin needed to have the ability to: have links to all merchants (show pages), edit and create new merchants. An admins show page also shows merchant statistics (best days, total revenue, etc.), notes on revenue calculations, invoice information, and a way to control the status of a merchant or a merchants invoice.  
+## User Story Breakdown 
+* [*Admins*] An Admin needed to have the ability to: have links to all merchants (show pages), edit and create new merchants. An admins show page also shows merchant statistics (best days, total revenue, etc.), notes on revenue calculations, invoice information, and a way to control the status of a merchant or a merchants invoice.  
 
-[*Merchants*] A Merchant needed to have the ability to: render its top customers, show items ready to ship, and have sorted invoices on its show page; merchants also had both an items and invoices index & show page. An items index held a list of items with name, description and price, a way to change an items status, their most popular items, and best sales day. The invoices page held specific invoice information such as item names, quantity ordered, sales prices (plus total revenue), as well as a way to also change the status of an invoice. 
+* [*Merchants*] A Merchant needed to have the ability to: render its top customers, show items ready to ship, and have sorted invoices on its show page; merchants also had both an items and invoices index & show page. An items index held a list of items with name, description and price, a way to change an items status, their most popular items, and best sales day. The invoices page held specific invoice information such as item names, quantity ordered, sales prices (plus total revenue), as well as a way to also change the status of an invoice. 
 
-### Methods
-[*Class methods*] top_customers, incomplete, top_mechants
+## Methods Used 
+* [*Class methods*] top_customers, incomplete, top_mechants
 
-[*Instance methods*] formatted_date, total_revenue, top_customers, items_to_ship, best_day, best_day_data, most_popular_items   
+* [*Instance methods*] formatted_date, total_revenue, top_customers, items_to_ship, best_day, best_day_data, most_popular_items   
 
 ## Ideal Refactors
 
