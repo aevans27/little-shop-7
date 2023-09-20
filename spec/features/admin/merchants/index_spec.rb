@@ -79,6 +79,9 @@ RSpec.describe "Admin Merchants" do
     expect(find("form")).to have_content("Name")
     expect(page).to have_button("Submit")
     
+    click_button "Submit"
+    expect(page).to have_content("Error: All fields must be filled in to submit")
+    
     fill_in "Name", with: "Karl"
     click_button "Submit"
 
@@ -87,17 +90,6 @@ RSpec.describe "Admin Merchants" do
     expect(page).to have_content("Karl")
     expect(page).to have_button("Disable Karl")
   end
-
-  # it "flashes an error given invalid data" do 
-  #   load_test_data
-  #   visit "/admin/merchants"
-
-  #   visit "/admin/merchants/new"
-
-  #   click_button "Submit"
-  #   expect(page).to have_content("Error: All fields must be filled in to submit"
-  #   redirect_to "/admin/merchants/new")
-  # end
 
   it "has a enable button that changes the merchant status and returns you back to the merchant index" do
     merchant1= Merchant.create!(name: "No Face", status: "disabled")
