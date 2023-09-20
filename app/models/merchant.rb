@@ -47,14 +47,6 @@ class Merchant <ApplicationRecord
     best_day_data.updated_at.strftime("%A, %B %d, %Y")
   end
 
-  def best_day_data
-    invoices.select("invoices.updated_at, sum(invoice_items.quantity * invoice_items.unit_price) AS thesum")
-            .group("invoices.updated_at")
-            .order("thesum desc, invoices.updated_at")
-            .first
-  end
-
-
   def most_popular_items
     items.select("items.*, invoices.updated_at, SUM(invoice_items.quantity * invoice_items.unit_price)")
     .joins(invoices: :transactions)
@@ -62,5 +54,14 @@ class Merchant <ApplicationRecord
     .group("items.id, invoices.updated_at")
     .order("sum desc")
     .limit(5)
+  end
+
+private
+
+  def best_day_data
+    invoices.select("invoices.updated_at, sum(invoice_items.quantity * invoice_items.unit_price) AS thesum")
+            .group("invoices.updated_at")
+            .order("thesum desc, invoices.updated_at")
+            .first
   end
 end
