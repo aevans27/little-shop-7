@@ -11,7 +11,7 @@ class MerchantInvoicesController < ApplicationController
   def update
     invoice_item = InvoiceItem.find(params[:in_item_id])
     invoice_item.update(status: params[:status])
-    redirect_to "/merchants/#{params[:merchant_id]}/invoices/#{params[:id]}"
 
+    redirect_to merchant_invoice_path(invoice_item)
   end
 end
