@@ -28,6 +28,8 @@ class Merchant <ApplicationRecord
       self.items.select("items.*, invoice_items.invoice_id, invoices.created_at")
       .joins(invoices: :invoice_items) #invoices: optional
       .where("invoice_items.status != 2")
+      .order(:invoice_id)
+      .distinct
   end
 
   def self.top_merchants
