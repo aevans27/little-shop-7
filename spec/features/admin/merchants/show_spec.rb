@@ -5,7 +5,6 @@ RSpec.describe "Admin Merchants" do
     load_test_data
   end 
 
-  # US 25- Merchant Show
   it "takes you to the merchants show page" do 
     visit admin_merchants_path
     
@@ -15,7 +14,6 @@ RSpec.describe "Admin Merchants" do
     expect(page).to_not have_content("Kiki")
   end
 
-  # US 26- Update Merchant 
   it "can update a merchants information" do 
     visit admin_merchant_path(@merchant7)
 
