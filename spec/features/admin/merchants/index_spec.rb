@@ -2,7 +2,6 @@ require "rails_helper"
 
 RSpec.describe "Admin Merchants" do 
   
-  # US 24- Merchant Index 
   it "shows the names of each merchant in the system" do 
     load_test_data
 
@@ -68,18 +67,7 @@ RSpec.describe "Admin Merchants" do
     expect(find("#merchant-#{merchant1.id}")).to have_button("Disable #{merchant1.name}")
   end
 
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  it "has link to create new merchants" do
+  it "creates new merchants with valid data" do
     load_test_data
     visit "/admin/merchants"
     
@@ -91,10 +79,14 @@ RSpec.describe "Admin Merchants" do
     expect(find("form")).to have_content("Name")
     expect(page).to have_button("Submit")
     
+    click_button "Submit"
+    expect(page).to have_content("Error: All fields must be filled in to submit")
+    
     fill_in "Name", with: "Karl"
     click_button "Submit"
 
     expect(page).to have_current_path("/admin/merchants")
+    expect(page).to have_content("Information has been successfully updated")
     expect(page).to have_content("Karl")
     expect(page).to have_button("Disable Karl")
   end
