@@ -29,11 +29,11 @@ class Invoice < ApplicationRecord
   end
 
   def discounted_total_revenue
+    # require 'pry';binding.pry
     if self.items.count != 0
-      items.select("SUM((invoice_items.quantity * items.unit_price) * ((100 - bulk_discounts.discount) * 0.01)) AS total")[0]
-      .joins(:bulk_discounts)
-      .where("invoice_items.quantity >= bulk_discounts.discount")
-      .group("items.id")
+      items.joins(merchant: :bulk_discounts)
+      .where("invoice_items.quantity >= bulk_discounts.threshold")
+      .select("SUM((invoice_items.quantity * items.unit_price) * ((100 - bulk_discounts.discount) * 0.01)) AS total")[0]
       .total
     else
       0
