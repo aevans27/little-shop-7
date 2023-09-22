@@ -19,4 +19,13 @@ class BulkDiscountsController < ApplicationController
       flash[:error] = "Error: All fields must be filled in to submit"
    end
   end
+
+  def destroy 
+    merchant = Merchant.find(params[:id])
+    discount = merchant.bulk_discounts.find(params[:discount_id])
+
+    discount.destroy
+
+    redirect_to "/merchants/#{params[:id]}/bulk_discounts"
+  end
 end
