@@ -1,4 +1,7 @@
 <ul id="discount_details">
   <li><%= "Discount is #{@bulk_discount.discount} percent off" %></li>
   <li><%= "Threshold is #{@bulk_discount.threshold} items" %></li>
+  <section id="link_to_edit">
+    <p><%= link_to "Edit Discount", "/bulk_discounts/#{@bulk_discount.id}/edit" %></p>
+  </section>
 </ul>
