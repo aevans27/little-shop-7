@@ -6,3 +6,8 @@
     <li><%= "Discount for " %><%= link_to "#{discount.discount} off when you buy #{discount.threshold}", "/merchants/#{@merchant.id}/bulk_discounts/#{discount.id}" %>
   <% end %> 
 </ul>
+
+<h2>Create Discount:</h2>
+<ul id="merchant_discount_create">
+  <li><%= link_to "Create Discount", "/merchants/#{@merchant.id}/bulk_discounts/new" %></li>
+</ul>
