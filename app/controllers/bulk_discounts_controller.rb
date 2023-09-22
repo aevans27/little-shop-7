@@ -36,4 +36,16 @@ class BulkDiscountsController < ApplicationController
   def edit
     @bulk_discount = BulkDiscount.find(params[:id])
   end
+
+  def update
+    bulk_discount = BulkDiscount.find(params[:id])
+    if params[:discount].present? && params[:threshold].present?
+      bulk_discount.update(discount: params[:discount], threshold: params[:threshold])
+      redirect_to "/merchants/#{params[:merchant_id]}/bulk_discounts"
+      flash[:alert] = "Item has been updated"
+    else
+      redirect_to "/bulk_discounts/#{params[:id]}/edit"
+      flash[:error] = "Error: All fields must be filled in to submit"
+    end
+  end
 end
