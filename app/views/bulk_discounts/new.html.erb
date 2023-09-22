@@ -1,0 +1,11 @@
+<h1>New Discount</h1>
+<%= form_with url: "/merchants/#{params[:id]}/bulk_discounts" , method: :post, local: true do |f| %>
+
+  <%= f.label :discount %>
+  <%= f.text_field :discount %>
+
+  <%= f.label :threshold %>
+  <%= f.text_field :threshold %>
+
+  <%= f.submit "Submit" %>
+<% end %>

@@ -19,4 +19,6 @@ Rails.application.routes.draw do
   resources :items, only: [:edit, :update]
 
   get "merchants/:id/bulk_discounts", to: "bulk_discounts#index"
+  get "merchants/:id/bulk_discounts/new", to: "bulk_discounts#new"
+  post "merchants/:id/bulk_discounts", to: "bulk_discounts#create"
 end

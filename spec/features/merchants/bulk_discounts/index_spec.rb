@@ -4,7 +4,7 @@ RSpec.describe "Merchant Bulk Discount Index page" do
   before(:each) do 
     load_test_data
   end
-  it "shows a list of all my items" do 
+  it "shows a list of all discounts" do 
     visit "merchants/#{@merchant1.id}"
     click_link "My Discounts"
 
@@ -12,16 +12,22 @@ RSpec.describe "Merchant Bulk Discount Index page" do
       expect(page).to have_content(@discount1.discount)
       expect(page).to have_content(@discount1.threshold)
     end
+  end
 
-    # save_and_open_page
-  
+  it "can create a new discounts" do
+    visit "merchants/#{@merchant1.id}/bulk_discounts"
+    click_link "Create Discount"
+    click_button 'Submit'
 
-    # within "#merchant_name" do 
-    #   expect(page).to have_content(@merchant1.name)
-    # end
+    fill_in 'Discount', with: 50
+    fill_in 'Threshold', with: 100
+    click_button 'Submit'
 
-    # within "#merchant_invoices" do 
-    #   expect(page).to have_content(@invoice_1.id)
-    # end
+    expect(current_path).to eq("/merchants/#{@merchant1.id}/bulk_discounts")
+    
+    within "#merchant_discounts" do 
+      expect(page).to have_content(50)
+      expect(page).to have_content(100)
+    end
   end
 end
