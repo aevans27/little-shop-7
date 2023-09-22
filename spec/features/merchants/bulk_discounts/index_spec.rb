@@ -24,10 +24,27 @@ RSpec.describe "Merchant Bulk Discount Index page" do
     click_button 'Submit'
 
     expect(current_path).to eq("/merchants/#{@merchant1.id}/bulk_discounts")
-    
+
     within "#merchant_discounts" do 
       expect(page).to have_content(50)
       expect(page).to have_content(100)
+    end
+  end
+
+  it "can delete discounts" do
+    visit "merchants/#{@merchant1.id}/bulk_discounts"
+
+    within "#merchant_discounts" do 
+      expect(page).to have_content("Discount for 20 off when you buy 10")
+    end
+    # save_and_open_page
+
+    click_button "Delete #{@discount1.discount} percent off"
+
+    expect(current_path).to eq("/merchants/#{@merchant1.id}/bulk_discounts")
+    
+    within "#merchant_discounts" do 
+    expect(page).not_to have_content("Discount for 20 off when you buy 10")
     end
   end
 end

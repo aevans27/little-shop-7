@@ -4,6 +4,10 @@
 <ul id="merchant_discounts">
   <% @merchant.bulk_discounts.distinct.each do |discount| %>
     <li><%= "Discount for " %><%= link_to "#{discount.discount} off when you buy #{discount.threshold}", "/merchants/#{@merchant.id}/bulk_discounts/#{discount.id}" %>
+    <%= form_with url: "/merchants/#{@merchant.id}/bulk_discounts", method: :delete, data: {turbo: false} do |f| %>
+          <%= f.hidden_field :discount_id, :value => "#{discount.id}" %>
+          <%= f.submit "Delete #{discount.discount} percent off" %>
+        <% end %>
   <% end %> 
 </ul>
 
