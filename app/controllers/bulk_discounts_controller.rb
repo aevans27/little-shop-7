@@ -32,4 +32,8 @@ class BulkDiscountsController < ApplicationController
 
     redirect_to "/merchants/#{params[:id]}/bulk_discounts"
   end
+
+  def edit
+    @bulk_discount = BulkDiscount.find(params[:id])
+  end
 end

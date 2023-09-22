@@ -56,4 +56,17 @@ RSpec.describe "Merchant Bulk Discount Index page" do
       expect(page).to have_content("Threshold is #{@discount1.threshold} items")
     end
   end
+
+  it "edit a discount" do 
+    visit "merchants/#{@merchant1.id}/bulk_discounts/#{@discount1.id}"
+
+    within "#discount_details" do 
+      click_link "Edit Discount"
+    end
+
+    fill_in 'Discount', with: 50
+    fill_in 'Threshold', with: 100
+    click_button 'Update Discount'
+
+  end
 end

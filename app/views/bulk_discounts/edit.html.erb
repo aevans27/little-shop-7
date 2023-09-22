@@ -1,0 +1,9 @@
+<h1 id="discount_editor"><%= "Editing #{@bulk_discount.id} Details" %></h1>
+
+<%= form_with url: "/bulk_discounts/#{@bulk_discount.id}?merchant_id=#{@bulk_discount.merchant.id}", method: :patch, data: {turbo: false} do |form| %>
+  <p><strong><%= form.label :discount %></strong></p>
+  <p><stong><%= form.text_field :discount, :value => @bulk_discount.discount %></strong></p>
+  <p><strong><%= form.label :threshold %></strong></p>
+  <p><strong><%= form.text_area :threshold, :value => @bulk_discount.discount %></strong></p>
+  <p><%= form.submit 'Update Discount' %></p>
+<% end %>
