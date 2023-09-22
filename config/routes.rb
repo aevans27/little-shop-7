@@ -17,4 +17,6 @@ Rails.application.routes.draw do
   end
   
   resources :items, only: [:edit, :update]
+
+  get "merchants/:id/bulk_discounts", to: "bulk_discounts#index"
 end

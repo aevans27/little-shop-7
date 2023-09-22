@@ -16,9 +16,9 @@ def load_test_data
   @discount4= BulkDiscount.create!(discount:20, threshold:10, merchant:@merchant2)
   @discount5= BulkDiscount.create!(discount:30, threshold:20, merchant:@merchant2)
   @discount6= BulkDiscount.create!(discount:40, threshold:40, merchant:@merchant2)
-  @discount7= BulkDiscount.create!(discount:20, threshold:10, merchant:@merchant1)
-  @discount8= BulkDiscount.create!(discount:30, threshold:15, merchant:@merchant1)
-  @discount9= BulkDiscount.create!(discount:40, threshold:20, merchant:@merchant1)
+  @discount7= BulkDiscount.create!(discount:20, threshold:10, merchant:@merchant3)
+  @discount8= BulkDiscount.create!(discount:30, threshold:15, merchant:@merchant3)
+  @discount9= BulkDiscount.create!(discount:40, threshold:20, merchant:@merchant3)
 
   @customer_1 = Customer.create!(first_name: "Frodo", last_name: "Baggins")
   @customer_2 = Customer.create!(first_name: "Samwise", last_name: "Gamgee")
