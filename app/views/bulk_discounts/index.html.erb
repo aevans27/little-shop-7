@@ -1,0 +1,8 @@
+<h1 id="merchant_name"><%= "#{@merchant.name} Discounts" %></h1>
+
+<h2>Available Discounts:</h2>
+<ul id="merchant_discounts">
+  <% @merchant.bulk_discounts.distinct.each do |discount| %>
+    <li><%= "Discount for " %><%= link_to "#{discount.discount} off when you buy #{discount.threshold}", "/merchants/#{@merchant.id}/bulk_discounts/#{discount.id}" %>
+  <% end %> 
+</ul>
