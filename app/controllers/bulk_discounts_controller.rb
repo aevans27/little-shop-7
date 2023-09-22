@@ -7,6 +7,10 @@ class BulkDiscountsController < ApplicationController
     @bulk_discount = BulkDiscount.new
   end
 
+  def show
+    @bulk_discount = BulkDiscount.find(params[:discount_id])
+  end
+
   def create
     @merchant = Merchant.find(params[:id])
    if params[:discount].present? && params[:threshold].present?
