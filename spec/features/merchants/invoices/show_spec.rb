@@ -24,7 +24,7 @@ RSpec.describe "Merchant Invoice Show page" do
     within "#invoice_items" do 
       expect(page).to have_content(invoice_item.item.name)
        expect(page).to have_content(invoice_item.quantity)
-       expect(page).to have_content("$4.00")
+       expect(page).to have_content("$314.15")
        expect(page).to have_content(invoice_item.status)
     end
   end
@@ -59,5 +59,10 @@ RSpec.describe "Merchant Invoice Show page" do
     expect(find("#total_revenue")).to have_content("$4,083.95")
     expect(find("#discounted_revenue")).to have_content("$816.79")
     expect(find("#total_discounted_revenue")).to have_content("$3,267.16")
+  end
+
+  it "show link to discount applied to invoice item" do
+    visit "merchants/#{@merchant1.id}/invoices/#{@invoice_1.id}"
+    # save_and_open_page
   end
 end

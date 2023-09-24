@@ -11,18 +11,22 @@
     <th>Quanity</th>
     <th>Price per unit</th>
     <th>Status</th>
+    <th>Discounts</th>
   </tr>
 <% @invoice.invoice_items.each do |invoice_item| %>
 <section id="invoice_items">
   <tr>
     <td><%= invoice_item.item.name %></td>
     <td><%= invoice_item.quantity %></td>
-    <td><%= number_to_currency(invoice_item.item.unit_price/100.0) %></td>
+    <td><%= number_to_currency(invoice_item.unit_price/100.0) %></td>
     <td><%= invoice_item.status %></td>
     <%= form_with url: "/merchants/#{params[:merchant_id]}/invoices/#{@invoice.id}?in_item_id=#{invoice_item.id}", method: :patch, data: { turbo: false } do |f| %>
     Current Status: <%= f.select :status, options_for_select(["pending", "packaged", "shipped"], selected: invoice_item.status) %><br>
     <%= f.submit "Update Item Status" %>
     <%end%>
+    <% if invoice_item.top_bulk_discount != nil %>
+      <td>This item qualifies for  <%= link_to "#{invoice_item.top_bulk_discount.discount} percent off", "/merchants/#{invoice_item.top_bulk_discount.merchant.id}/bulk_discounts/#{invoice_item.top_bulk_discount.id}" %>
+    <% end %>
   </tr>
 </section>
   <% end %>
