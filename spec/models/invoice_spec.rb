@@ -6,6 +6,7 @@ RSpec.describe Invoice, type: :model do
     it { should have_many :transactions }
     it { should have_many :invoice_items }
     it { should have_many(:items).through(:invoice_items) }
+    it { should have_many(:bulk_discounts).through(:items) }
     it { should validate_presence_of :customer_id }
     it { should validate_presence_of :status }
   end
@@ -37,7 +38,7 @@ RSpec.describe Invoice, type: :model do
     it "can find total_revenue" do
       load_test_data
 
-      expect(@invoice_1a.total_revenue).to eq(23400)
+      expect(@invoice_1a.total_revenue).to eq(2450370.0)
     end
 
     it "can find total_revenue if revenue is zero" do
@@ -45,5 +46,17 @@ RSpec.describe Invoice, type: :model do
 
       expect(@invoice_14.total_revenue).to eq(0)
     end
+
+    it "can get discounted total sales" do
+      load_test_data
+      expect(@invoice_1a.total_discounted_revenue).to eq(1960296.0)
+    end
+
+    it "can get discount from invoice" do
+      load_test_data
+      expect(@invoice_1a.discounted_total_invoice).to eq(490074.0)
+    end
+
+    
   end
 end

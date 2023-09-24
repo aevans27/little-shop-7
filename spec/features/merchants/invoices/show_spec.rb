@@ -34,7 +34,7 @@ RSpec.describe "Merchant Invoice Show page" do
 
     visit "merchants/#{@merchant1.id}/invoices/#{@invoice_1.id}"
 
-    expect(find("#total_revenue")).to have_content("$52.00")
+    expect(find("#total_revenue")).to have_content("$4,083.95")
 
   end
 
@@ -51,5 +51,13 @@ RSpec.describe "Merchant Invoice Show page" do
 
     expect(page).to_not have_field('status', with: 'pending')
     expect(page).to have_field('status', with: 'shipped')
+  end
+
+  it "get total revenue and discounted revenue" do
+    visit "merchants/#{@merchant1.id}/invoices/#{@invoice_1.id}"
+    # save_and_open_page
+    expect(find("#total_revenue")).to have_content("$4,083.95")
+    expect(find("#discounted_revenue")).to have_content("$816.79")
+    expect(find("#total_discounted_revenue")).to have_content("$3,267.16")
   end
 end
