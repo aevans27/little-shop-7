@@ -29,4 +29,5 @@
 </table>
 
 <section id="total_revenue"><h2> Total Price: <%=number_to_currency(@invoice.total_revenue/100.0)%> </h2></section>
-<section id="discounted_revenue"><h3> Discounted Price: <%=number_to_currency(@invoice.discounted_total_revenue/100.0)%> </h3></section>
+<section id="discounted_revenue"><h3> Discounted Amount: <%=number_to_currency(@invoice.discounted_total_invoice.to_f/100.0)%> </h3></section>
+<section id="total_discounted_revenue"><h3> Total Revenue: <%=number_to_currency(@invoice.total_discounted_revenue.to_f/100.0)%> </h3></section>

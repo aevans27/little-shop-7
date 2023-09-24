@@ -19,31 +19,41 @@ class Invoice < ApplicationRecord
     # "Monday, July 18, 2019"
   end
 
+  #previously calling items unit price when it should be calling the invoice_items unit price
+  # def total_revenue
+  #   if self.items.count != 0
+  #     items.select("SUM(invoice_items.quantity * items.unit_price) AS total")[0].total
+  #   else
+  #     0
+  #   end
+  # end
+
   def total_revenue
+    invoice_items.sum do |invoice_item|
+      invoice_item.invoice_item_revenue
+    end
+  end
+
+  # def discounted_total_revenue
+  #   disc = discounted_total_revenue_check
+  #   if disc == nil
+  #     0
+  #   else
+  #     disc
+  #   end
+  # end
+
+  def discounted_total_invoice
     if self.items.count != 0
-      items.select("SUM(invoice_items.quantity * items.unit_price) AS total")[0].total
+      invoice_items.sum do |invoice_item|
+        invoice_item.total_discount.to_f
+      end
     else
       0
     end
   end
 
-  def discounted_total_revenue
-    disc = discounted_total_revenue_check
-    if disc == nil
-      0
-    else
-      disc
-    end
-  end
-
-  def discounted_total_revenue_check
-    if self.items.count != 0
-      items.joins(merchant: :bulk_discounts)
-      .where("invoice_items.quantity >= bulk_discounts.threshold")
-      .select("SUM((invoice_items.quantity * items.unit_price) * ((100 - bulk_discounts.discount) * 0.01)) AS total")[0]
-      .total
-    else
-      0
-    end
+  def total_discounted_revenue
+    total_revenue - discounted_total_invoice
   end
 end

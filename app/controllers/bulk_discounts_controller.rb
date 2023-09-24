@@ -17,7 +17,7 @@ class BulkDiscountsController < ApplicationController
     @merchant.bulk_discounts.create(discount:params[:discount],
      threshold:params[:threshold])
       redirect_to "/merchants/#{@merchant.id}/bulk_discounts"
-      flash[:alert] = "Item has been added to merchant"
+      flash[:alert] = "Discount has been added to merchant"
    else
       redirect_to "/merchants/#{@merchant.id}/bulk_discounts/new"
       flash[:error] = "Error: All fields must be filled in to submit"

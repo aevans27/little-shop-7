@@ -41,7 +41,7 @@ RSpec.describe "the invoice show" do
 
     visit admin_invoice_path(@invoice_1a)
 
-    expect(find("#total_revenue")).to have_content("$234.00")
+    expect(find("#total_revenue")).to have_content("$24,503.70")
 
   end
 
