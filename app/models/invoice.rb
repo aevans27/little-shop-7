@@ -29,7 +29,15 @@ class Invoice < ApplicationRecord
   end
 
   def discounted_total_revenue
-    # require 'pry';binding.pry
+    disc = discounted_total_revenue_check
+    if disc == nil
+      0
+    else
+      disc
+    end
+  end
+
+  def discounted_total_revenue_check
     if self.items.count != 0
       items.joins(merchant: :bulk_discounts)
       .where("invoice_items.quantity >= bulk_discounts.threshold")

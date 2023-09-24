@@ -54,7 +54,7 @@ RSpec.describe "Merchant Invoice Show page" do
   end
 
   it "get total revenue and discounted revenue" do
-    visit "merchants/#{@merchant1.id}/invoices/#{@invoice_11.id}"
-  save_and_open_page
+    visit "merchants/#{@merchant1.id}/invoices/#{@invoice_1.id}"
+    # save_and_open_page
   end
 end

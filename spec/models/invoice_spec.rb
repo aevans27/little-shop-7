@@ -45,5 +45,10 @@ RSpec.describe Invoice, type: :model do
 
       expect(@invoice_14.total_revenue).to eq(0)
     end
+
+    it "can get discounted total sales" do
+      load_test_data
+      expect(@invoice_1a.discounted_total_revenue).to eq(0.1872e5)
+    end
   end
 end
