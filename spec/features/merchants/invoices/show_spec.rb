@@ -63,6 +63,7 @@ RSpec.describe "Merchant Invoice Show page" do
 
   it "show link to discount applied to invoice item" do
     visit "merchants/#{@merchant1.id}/invoices/#{@invoice_1.id}"
-    # save_and_open_page
+    expect(find("#invoice_items")).to have_content("This item qualifies for 20 percent off")
+    #  save_and_open_page
   end
 end
