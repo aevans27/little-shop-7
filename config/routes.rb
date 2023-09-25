@@ -14,16 +14,14 @@ Rails.application.routes.draw do
     get "/dashboard", to: "merchants#show"
     resources :items, only: [:index, :new, :create, :show, :update], :controller => 'merchant_items'
     resources :invoices, only: [:index, :show, :update], :controller => 'merchant_invoices'
+    resources :bulk_discounts, only: [:index, :new, :create, :show], :controller => 'bulk_discounts'
   end
   
   resources :items, only: [:edit, :update]
 
-  get "merchants/:id/bulk_discounts", to: "bulk_discounts#index"
-  get "merchants/:id/bulk_discounts/new", to: "bulk_discounts#new"
-  post "merchants/:id/bulk_discounts", to: "bulk_discounts#create"
-  delete "merchants/:id/bulk_discounts", to: "bulk_discounts#destroy"
-  get "merchants/:id/bulk_discounts/:discount_id", to: "bulk_discounts#show"
+  #Not sure why but can't add delete to resource causes error for path that should
+  #automatically created
+  delete "merchants/:merchant_id/bulk_discounts", to: "bulk_discounts#destroy"
 
-  get "bulk_discounts/:id/edit", to: "bulk_discounts#edit"
-  patch "bulk_discounts/:id", to: "bulk_discounts#update"
+  resources :bulk_discounts, only: [:edit, :update]
 end

@@ -1,5 +1,6 @@
+<%= render partial: "header" %>
 <h1>New Discount</h1>
-<%= form_with url: "/merchants/#{params[:id]}/bulk_discounts" , method: :post, local: true do |f| %>
+<%= form_with url: "/merchants/#{params[:merchant_id]}/bulk_discounts" , method: :post, local: true do |f| %>
 
   <%= f.label :discount %>
   <%= f.text_field :discount %>

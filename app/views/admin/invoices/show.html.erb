@@ -19,7 +19,7 @@ Current Status: <%= f.select :status, options_for_select(["completed", "cancelle
   <tr>
     <td><%= invoice_item.item.name %></td>
     <td><%= invoice_item.quantity %></td>
-    <td><%= number_to_currency(invoice_item.item.unit_price/100.0) %></td>
+    <td><%= number_to_currency(invoice_item.unit_price/100.0) %></td>
     <td><%= invoice_item.status %></td>
   </tr>
 </section>

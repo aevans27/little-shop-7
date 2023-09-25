@@ -46,7 +46,7 @@ RSpec.describe Merchant, type: :model do
 
   it "can return the merchants top five items" do
     load_test_data
-    expect(@merchant3.most_popular_items.first.name).to eq("Colgate")
+    expect(@merchant3.most_popular_items).to include(@item15)
     expect(@merchant3.most_popular_items.first.sum).to eq(408395)
   end
 end

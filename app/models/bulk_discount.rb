@@ -5,4 +5,6 @@ class BulkDiscount < ApplicationRecord
   has_many :invoice_items, through: :items
   validates_presence_of :discount
   validates_presence_of :threshold
+  validates_numericality_of :discount, :only_integer => true
+  validates_numericality_of :threshold, :only_integer => true
 end
