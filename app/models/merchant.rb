@@ -9,14 +9,6 @@ class Merchant <ApplicationRecord
   enum status: ["disabled", "enabled"]
 
   def top_customers
-    # find_by_sql(
-    #   "SELECT customers.*, COUNT(invoices.status)
-	  #   FROM customers 
-	  #   INNER JOIN invoices ON invoices.customer_id = customers.id 
-	  #   GROUP BY customers.id
-	  #   ORDER BY count DESC
-	  #   LIMIT 5")
-    
       self.customers.select("customers.*, COUNT(transactions.id)")
       .joins(:transactions)
       .where("transactions.result = 0")

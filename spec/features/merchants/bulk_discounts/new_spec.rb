@@ -5,9 +5,17 @@ RSpec.describe "Merchant Bulk Discount New page" do
     load_test_data
   end
 
-  it "can create a new discounts" do
+  it "can create a new discounts with wrong data type" do
     visit "merchants/#{@merchant1.id}/bulk_discounts"
     click_link "Create Discount"
+    click_button 'Submit'
+
+    fill_in 'Discount', with: ""
+    fill_in 'Threshold', with: ""
+    click_button 'Submit'
+
+    fill_in 'Discount', with: "wrong"
+    fill_in 'Threshold', with: "wrong"
     click_button 'Submit'
 
     fill_in 'Discount', with: 50

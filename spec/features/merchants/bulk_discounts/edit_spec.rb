@@ -5,7 +5,7 @@ RSpec.describe "Bulk Discount Edit page" do
     load_test_data
   end
 
-  it "edit a discount" do 
+  it "edit a discount with wrong data" do 
     visit "merchants/#{@merchant1.id}/bulk_discounts/#{@discount1.id}"
 
     expect(page).to have_content("Discount is #{@discount1.discount} percent off")
@@ -17,6 +17,10 @@ RSpec.describe "Bulk Discount Edit page" do
 
     fill_in 'Discount', with: ""
     fill_in 'Threshold', with: ""
+    click_button 'Update Discount'
+
+    fill_in 'Discount', with: "wrong"
+    fill_in 'Threshold', with: "wrong"
     click_button 'Update Discount'
 
     fill_in 'Discount', with: 50
