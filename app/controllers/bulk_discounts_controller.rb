@@ -14,20 +14,25 @@ class BulkDiscountsController < ApplicationController
 
   def create
     @merchant = Merchant.find(params[:merchant_id])
-   if params[:discount].present? && params[:threshold].present?
-    if params[:threshold].to_i > 0 && params[:discount].to_i > 0 && params[:discount].to_i < 100
-      @merchant.bulk_discounts.create(discount:params[:discount],
-      threshold:params[:threshold])
-        redirect_to "/merchants/#{@merchant.id}/bulk_discounts"
-        flash[:alert] = "Discount has been added to merchant"
+    if @merchant.bulk_discounts.find_by(discount: params[:discount], threshold: params[:threshold]).is_not_valid_discount
+      redirect_to "/merchants/#{@merchant.id}/bulk_discounts/new"
+      flash[:error] = "Error: Merchant discount already exists"
     else
-      redirect_to "/merchants/#{@merchant.id}/bulk_discounts/new"
-      flash[:error] = "Error: All fields have valid number values"
+      if params[:discount].present? && params[:threshold].present?
+        if params[:threshold].to_i > 0 && params[:discount].to_i > 0 && params[:discount].to_i < 100
+          @merchant.bulk_discounts.create(discount:params[:discount],
+          threshold:params[:threshold])
+            redirect_to "/merchants/#{@merchant.id}/bulk_discounts"
+            flash[:alert] = "Discount has been added to merchant"
+        else
+          redirect_to "/merchants/#{@merchant.id}/bulk_discounts/new"
+          flash[:error] = "Error: All fields have valid number values"
+        end
+       else
+          redirect_to "/merchants/#{@merchant.id}/bulk_discounts/new"
+          flash[:error] = "Error: All fields must be filled in to submit"
+       end
     end
-   else
-      redirect_to "/merchants/#{@merchant.id}/bulk_discounts/new"
-      flash[:error] = "Error: All fields must be filled in to submit"
-   end
   end
 
   def destroy 
