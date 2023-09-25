@@ -5,7 +5,7 @@ class InvoiceItem < ApplicationRecord
   belongs_to :item
   belongs_to :invoice
   has_many :merchants, through: :item
-  has_many :bulk_discounts, through: :item
+  has_many :bulk_discounts, through: :merchants
   validates_presence_of :item_id
   validates_presence_of :invoice_id
   validates_presence_of :quantity
@@ -14,7 +14,6 @@ class InvoiceItem < ApplicationRecord
 
   def total_discount
     if top_bulk_discount != nil
-      # require 'pry';binding.pry
       (invoice_item_revenue * (top_bulk_discount.discount.to_f/100)).round(0)
     else
       0

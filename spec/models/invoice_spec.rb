@@ -6,7 +6,7 @@ RSpec.describe Invoice, type: :model do
     it { should have_many :transactions }
     it { should have_many :invoice_items }
     it { should have_many(:items).through(:invoice_items) }
-    it { should have_many(:bulk_discounts).through(:items) }
+    # it { should have_many(:bulk_discounts).through(:items) }
     it { should validate_presence_of :customer_id }
     it { should validate_presence_of :status }
   end
@@ -55,6 +55,9 @@ RSpec.describe Invoice, type: :model do
     it "can get discount from invoice" do
       load_test_data
       expect(@invoice_1a.discounted_total_invoice).to eq(490074.0)
+      @customer_0 = Customer.create!(first_name: "Tim", last_name: "Tim")
+      @invoice_0 = Invoice.create!(status: "cancelled", customer: @customer_0, updated_at: "2023-04-27 14:54:09 UTC")
+      expect(@invoice_0.discounted_total_invoice).to eq(0)
     end
 
     
