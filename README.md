@@ -61,7 +61,9 @@ This project focuses on developing a usable shop management application for both
 ## User Story Breakdown 
 * [*Admins*] An Admin needed to have the ability to: have links to all merchants (show pages), edit and create new merchants. An admins show page also shows merchant statistics (best days, total revenue, etc.), notes on revenue calculations, invoice information, and a way to control the status of a merchant or a merchants invoice.  
 
-* [*Merchants*] A Merchant needed to have the ability to: render its top customers, show items ready to ship, and have sorted invoices on its show page; merchants also had both an items and invoices index & show page. An items index held a list of items with name, description and price, a way to change an items status, their most popular items, and best sales day. The invoices page held specific invoice information such as item names, quantity ordered, sales prices (plus total revenue), as well as a way to also change the status of an invoice. 
+* [*Merchants*] A Merchant needed to have the ability to: render its top customers, show items ready to ship, and have sorted invoices on its show page; merchants also had both an items and invoices index & show page. An items index held a list of items with name, description and price, a way to change an items status, their most popular items, and best sales day. The invoices page held specific invoice information such as item names, quantity ordered, sales prices (plus total revenue), as well as a way to also change the status of an invoice.
+  
+* [*Bulk Discounts*] A discount will be appied to a merchant and any items in invoices from that merchant will have the discount applied if the quantity is larger than the threshold of the discount.  A merchant can have multiple discounts but only the one with the largest threshold matched or passed will be used. Each bulk discount will consist of a discount and a threshold.
 
 ## Methods Used 
 * [*Class methods*] top_customers, incomplete, top_mechants
