@@ -74,4 +74,6 @@ This project focuses on developing a usable shop management application for both
 
 * SQL statements to active record: While the SQL queries are contained and not susceptible to attacks, rewriting them in ActiveRecord would be good practice for preventing SQL injection attacks for Rails features that take an argument.
 
-* Add more visual/styling to the welcome/show/index pages  
+* Add more visual/styling to the welcome/show/index pages
+
+* Remove the bulk_discount_items join table, normally through association I should be able to access a Merchant and it's Bulk_Discounts but issues kept arising that prevented the queries from working properly. 
