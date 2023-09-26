@@ -71,7 +71,7 @@ RSpec.describe "the invoice show" do
   it "get total revenue and discounted revenue" do
     load_test_data
     visit admin_invoice_path(@invoice_1a)
-    # save_and_open_page
+    
     expect(find("#total_revenue")).to have_content("$24,503.70")
     expect(find("#discounted_revenue")).to have_content("$4,900.74")
     expect(find("#total_discounted_revenue")).to have_content("$19,602.96")
