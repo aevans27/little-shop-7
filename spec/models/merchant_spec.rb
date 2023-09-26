@@ -49,4 +49,14 @@ RSpec.describe Merchant, type: :model do
     expect(@merchant3.most_popular_items).to include(@item15)
     expect(@merchant3.most_popular_items.first.sum).to eq(408395)
   end
+
+  it "#check_if_invoice_in_progress" do
+    load_test_data
+    #Empty
+    expect(@merchant10.check_if_invoice_in_progress).to eq(false)
+    #Has pending invoice
+    expect(@merchant1.check_if_invoice_in_progress).to eq(true)
+    #Has no pending invoices
+    expect(@merchant5.check_if_invoice_in_progress).to eq(false)
+  end 
 end

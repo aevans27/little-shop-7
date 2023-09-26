@@ -8,13 +8,12 @@ class BulkDiscountsController < ApplicationController
   end
 
   def show
-    # require 'pry';binding.pry
     @bulk_discount = BulkDiscount.find(params[:id])
   end
 
   def create
     @merchant = Merchant.find(params[:merchant_id])
-    if @merchant.bulk_discounts.find_by(discount: params[:discount], threshold: params[:threshold]).is_not_valid_discount
+    if @merchant.bulk_discounts.find_by(discount: params[:discount], threshold: params[:threshold])
       redirect_to "/merchants/#{@merchant.id}/bulk_discounts/new"
       flash[:error] = "Error: Merchant discount already exists"
     else
@@ -37,11 +36,16 @@ class BulkDiscountsController < ApplicationController
 
   def destroy 
     merchant = Merchant.find(params[:merchant_id])
-    discount = merchant.bulk_discounts.find(params[:discount_id])
-
-    discount.destroy
-
-    redirect_to "/merchants/#{params[:merchant_id]}/bulk_discounts"
+    if merchant.check_if_invoice_in_progress
+      redirect_to "/merchants/#{params[:merchant_id]}/bulk_discounts"
+      flash[:error] = "Discount applied to pending invoice, can't delete"
+    else
+      discount = merchant.bulk_discounts.find(params[:discount_id])
+      discount.destroy
+      redirect_to "/merchants/#{params[:merchant_id]}/bulk_discounts"
+      flash[:alert] = "Discount has been deleted"
+    end
+    
   end
 
   def edit
@@ -50,18 +54,23 @@ class BulkDiscountsController < ApplicationController
 
   def update
     bulk_discount = BulkDiscount.find(params[:id])
-    if params[:discount].present? && params[:threshold].present?
-      if params[:threshold].to_i > 0 && params[:discount].to_i > 0 && params[:discount].to_i < 100
-        bulk_discount.update(discount: params[:discount], threshold: params[:threshold])
-        redirect_to "/merchants/#{params[:merchant_id]}/bulk_discounts"
-        flash[:alert] = "Item has been updated"
+    if bulk_discount.merchant.check_if_invoice_in_progress
+      redirect_to "/merchants/#{params[:merchant_id]}/bulk_discounts"
+      flash[:alert] = "Discount applied to pending invoice, can't update"
+    else
+      if params[:discount].present? && params[:threshold].present?
+        if params[:threshold].to_i > 0 && params[:discount].to_i > 0 && params[:discount].to_i < 100
+          bulk_discount.update(discount: params[:discount], threshold: params[:threshold])
+          redirect_to "/merchants/#{params[:merchant_id]}/bulk_discounts"
+          flash[:alert] = "Discount has been updated"
+        else
+          redirect_to "/bulk_discounts/#{params[:id]}/edit"
+          flash[:error] = "Error: All fields have valid number values"
+        end
       else
         redirect_to "/bulk_discounts/#{params[:id]}/edit"
-        flash[:error] = "Error: All fields have valid number values"
+        flash[:error] = "Error: All fields must be filled in to submit"
       end
-    else
-      redirect_to "/bulk_discounts/#{params[:id]}/edit"
-      flash[:error] = "Error: All fields must be filled in to submit"
     end
   end
 end

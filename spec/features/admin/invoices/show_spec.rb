@@ -26,12 +26,12 @@ RSpec.describe "the invoice show" do
     visit admin_invoice_path(@invoice_1a)
 
     expect(find("#invoice_item-#{@invoice_items37.id}")).to have_content("Huskies")
-    expect(find("#invoice_item-#{@invoice_items37.id}")).to have_content("$2.00")
+    expect(find("#invoice_item-#{@invoice_items37.id}")).to have_content("$314.15")
     expect(find("#invoice_item-#{@invoice_items37.id}")).to have_content(13)
     expect(find("#invoice_item-#{@invoice_items37.id}")).to have_content("shipped")
 
     expect(find("#invoice_item-#{@invoice_items38.id}")).to have_content("Gatorade")
-    expect(find("#invoice_item-#{@invoice_items38.id}")).to have_content("$2.00")
+    expect(find("#invoice_item-#{@invoice_items38.id}")).to have_content("$314.15")
     expect(find("#invoice_item-#{@invoice_items38.id}")).to have_content(13)
     expect(find("#invoice_item-#{@invoice_items38.id}")).to have_content("shipped")
   end

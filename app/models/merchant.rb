@@ -25,6 +25,22 @@ class Merchant <ApplicationRecord
       .distinct
   end
 
+  def check_if_invoice_in_progress
+    invoice_check = invoices.where("invoice_items.status = 2")
+    .order("status desc")
+    .distinct
+
+    if invoice_check.empty?
+      false
+    else
+      if invoice_check.first.status =="in progress"
+        true
+      else
+        false
+      end
+    end
+  end
+
   def self.top_merchants
     find_by_sql(
       "SELECT merchants.*, SUM(invoice_items.quantity * invoice_items.unit_price) AS total_cost, MAX(invoices.updated_at) AS most_recent FROM merchants 
