@@ -7,8 +7,4 @@ class BulkDiscount < ApplicationRecord
   validates_presence_of :threshold
   validates_numericality_of :discount, :only_integer => true
   validates_numericality_of :threshold, :only_integer => true
-
-  def is_not_valid_discount
-    false
-  end
 end
